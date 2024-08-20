@@ -51,7 +51,7 @@ pub struct Config {
 impl Config {
 	pub fn build(args: &[String]) -> Result<Config, &str> {
 		if args.len() < 3 {
-            return Err("Usage: cargo run [string] [file-path]");
+            return Err("Usage: cargo run -- [string] [file-path]");
         }
 
 		let query = args[1].clone();
