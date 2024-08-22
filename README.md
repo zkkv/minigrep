@@ -5,7 +5,6 @@ This is a toy command-line utility written in Rust for practice. It mimics unix 
 ## How to Run
 To install, you need to have Rust language installed as well as `cargo` package manager. Clone this repository and run:
 
-Clone the repo and execute:
 ```shell
 cargo run -- [string] [file-path]
 ```
