@@ -49,13 +49,19 @@ pub struct Config {
 }
 
 impl Config {
-	pub fn build(args: &[String]) -> Result<Config, &str> {
-		if args.len() < 3 {
-            return Err("Usage: cargo run -- [string] [file-path]");
-        }
+	pub fn build(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
+		args.next();
+		const ERR_MSG: &str = "Usage: cargo run -- [string] [file-path]";
 
-		let query = args[1].clone();
-		let file_path = args[2].clone();
+		let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err(ERR_MSG),
+        };
+
+		let file_path = match args.next() {
+            Some(arg) => arg,
+            None => return Err(ERR_MSG),
+        };
 
 		let ignore_case = env::var("MINIGREP_IGNORE_CASE").is_ok();
 	
